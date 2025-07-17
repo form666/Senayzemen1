@@ -24,7 +24,7 @@
       max-width: 100vw;
       overflow-x: hidden;
     }
-    .login-overlay {
+        .login-overlay {
       position: fixed;
       inset: 0;
       width: 100vw;
@@ -36,30 +36,116 @@
       justify-content: center;
       flex-direction: column;
       transition: opacity 0.3s;
+      overflow-y: auto;
+    }
+    .login-org-logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin: 25px auto 10px auto;
+      box-shadow: 0 4px 28px #4dc2ff33, 0 0 0 5px #fbd33499;
+      object-fit: contain;
+      display: block;
+      border: 3px solid #fffbe6;
+      background: #fff;
+      position: relative;
+      z-index: 2;
+      animation: pop-logo 0.7s cubic-bezier(.42,0,.58,1);
+    }
+    @keyframes pop-logo {
+      0% { opacity: 0; transform: scale(0.7);}
+      70% { opacity: 1; transform: scale(1.13);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    .login-title {
+      text-align: center;
+      color: #19507d;
+      font-weight: 900;
+      font-size: 1.21em;
+      letter-spacing: 1px;
+      margin: 7px 0 15px 0;
+      text-shadow: 0 2px 10px #b4954922;
+      line-height: 1.25;
     }
     .login-card {
       background: #fff;
       border-radius: 18px;
       box-shadow: 0 8px 40px #1e90ff22, 0 0 0 8px #b4954922;
-      padding: 30px 15px 20px 15px;
-      width: 95vw;
-      max-width: 350px;
+      padding: 20px 10px 16px 10px;
+      width: 96vw;
+      max-width: 370px;
       display: flex;
       flex-direction: column;
       align-items: center;
       animation: fadeInLogin 0.45s cubic-bezier(.42,0,.58,1);
+      margin: 0 auto;
+      position: relative;
     }
     @keyframes fadeInLogin {
       0% { opacity: 0; transform: scale(0.97);}
       100% { opacity: 1; transform: scale(1);}
     }
-    .login-card h2 {
-      margin: 0 0 19px 0;
-      color: #1e90ff;
-      font-weight: bold;
-      font-size: 1.18em;
-      letter-spacing: .7px;
+    .agents-login-preview-title {
+      margin: 20px 0 5px 0;
       text-align: center;
+      font-weight: 600;
+      color: #1e90ff;
+      font-size: 1.07em;
+      letter-spacing: .2px;
+    }
+    .login-agents-preview {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 10px 0 18px 0;
+      flex-wrap: wrap;
+    }
+    .login-agent-photo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      background: linear-gradient(120deg, #f8fafb 70%, #fffbe6 100%);
+      border-radius: 18px;
+      box-shadow: 0 5px 24px #1e90ff18, 0 2px 7px #b4954922;
+      padding: 10px 10px 5px 10px;
+      width: 120px;
+      max-width: 40vw;
+      border: 2px solid #fbd334dd;
+      margin-bottom: 5px;
+      position: relative;
+    }
+    .login-agent-photo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #1e90ff;
+      box-shadow: 0 4px 18px #4dc2ff33, 0 0 0 8px #fff inset;
+      display: block;
+      margin-bottom: 2px;
+      background: #fff;
+      transition: box-shadow 0.22s;
+    }
+    .login-agent-photo-box:hover .login-agent-photo {
+      box-shadow: 0 8px 24px #27ae601a, 0 0 0 14px #1e90ff22 inset;
+      border: 3px solid #27ae60;
+    }
+    .login-agent-name {
+      font-weight: 700;
+      font-size: 1.13em;
+      color: #21314d;
+      text-align: center;
+      margin-top: 2px;
+      letter-spacing: .1px;
+      text-shadow: 0 1px 8px #19507d18;
+    }
+    .login-agent-role {
+      font-size: .98em;
+      color: #555;
+      text-align: center;
+      font-weight: 500;
     }
     .login-card label {
       display: block;
@@ -122,11 +208,10 @@
       display: none;
     }
     @media (max-width: 680px) {
-      .login-card {
-        padding: 18px 4vw 12px 4vw;
-        max-width: 98vw;
-      }
-      .login-card h2 { font-size: 1.06em;}
+      .login-org-logo { width: 70px; height: 70px; }
+      .login-card { padding: 10px 2vw 12px 2vw; max-width: 99vw; }
+      .login-agent-photo { width: 60px; height: 60px; }
+      .login-agent-photo-box { width: 90px; }
     }
     .main-content {
       display: none;
@@ -721,19 +806,38 @@
 <body>
   <!-- Login Overlay (blocks all before login) -->
   <div class="login-overlay" id="loginOverlay">
+    <img class="login-org-logo" src="IMG_20250717_112613_966.jpg" alt="Organization Logo">
+    <div class="login-title">
+      ሰናይ ዘመን የጉዞ እና ቪዛ ኃ/የተ/ግ/ማህበር<br>
+      <span style="color:#b49549;font-size:0.96em;font-weight:700;">(Trusted & Professional Service)</span>
+    </div>
+    <div class="agents-login-preview-title">
+      <i class="fa-solid fa-users"></i> ዋና ወኪሎቻችን (Our Main Agents)
+    </div>
+    <div class="login-agents-preview">
+      <div class="login-agent-photo-box">
+        <img class="login-agent-photo" src="IMG_20250524_183859_241.jpg" alt="ዶ/ር መስፍን አሰግድ">
+        <div class="login-agent-name">ዶ/ር መስፍን አሰግድ</div>
+        <div class="login-agent-role">Senior Consultant</div>
+      </div>
+      <div class="login-agent-photo-box">
+        <img class="login-agent-photo" src="IMG_20250716_183434_520.jpg" alt="ዶ/ር ኤርምያስ አባተ">
+        <div class="login-agent-name">ዶ/ር ኤርምያስ አባተ</div>
+        <div class="login-agent-role">Customer Advisor</div>
+      </div>
+    </div>
     <form class="login-card" id="loginForm" autocomplete="off">
-      <h2><i class="fa-solid fa-user-lock"></i> የተጠቃሚ መግቢያ (User Login)</h2>
-      <label for="login-username"><i class="fa-solid fa-user"></i> የተጠቃሚ ስም</label>
+      <label for="login-username"><i class="fa-solid fa-user"></i> USER NAME</label>
       <div class="input-icon">
         <i class="fa fa-user"></i>
         <input type="text" id="login-username" name="login-username" required autofocus placeholder="Username">
       </div>
-      <label for="login-password"><i class="fa-solid fa-lock"></i> የይለፍ ቃል</label>
+      <label for="login-password"><i class="fa-solid fa-lock"></i> PASSWORD</label>
       <div class="input-icon">
         <i class="fa fa-lock"></i>
         <input type="password" id="login-password" name="login-password" required placeholder="Password">
       </div>
-      <button type="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> ግባ</button>
+      <button type="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i>Login</button>
       <div class="login-error" id="loginError"></div>
     </form>
   </div>
@@ -786,8 +890,8 @@
       <div class="notice">
         <i class="fa-solid fa-triangle-exclamation"></i>
         <span>
-          ይህ ያለን ብቸኛ የ ONLINE መመዝገብያ ድህረገፅ ነው <br>
-          <b>ለማንኛውም በሌላ አካውንት ለሚደረግ ክፍያ እውቅናው የለንም❗️ ከአጭበርባሪወች እራስዎን ይጠብቁ።</b>
+          ይህ በታመነ ስለሆነ መመዝገብ የሚፈልጉበት ብቻ ነው። <br>
+          <b>ማንኛውንም በሌላ አካውንት ለሚደረግ ክፍያ እውቅናው የለንም❗️ ከአጭበርባሪወች ይጠብቁ።</b>
         </span>
       </div>
       <i class="fa-solid fa-bank"></i>
@@ -863,7 +967,7 @@
           <div>
             <i class="fa-solid fa-user-tie"></i>
             <strong>ዶ/ር ኤርምያስ አባተ</strong>
-            <div class="agent-role">Senior Consultant</div>
+            <div class="agent-role">Customer Advisor</div>
           </div>
         </div>
       </div>
@@ -924,7 +1028,7 @@
       <div class="image-preview-box">
         <img id="paymentPreview" class="image-preview" alt="Payment Preview">
       </div>
-      <button type="submit"><i class="fa-solid fa-paper-plane"></i> <b>የመመዝገብያ ክፍያ ከፍዬ ጨርሻለሁ</b></button>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> <b>ክፍያ ፈፅሜ ጨርሻለሁ</b></button>
     </form>
     <div id="submitMessage" class="submit-message" role="status" aria-live="polite"></div>
   </div>
@@ -1045,8 +1149,8 @@
       document.getElementById('receiptForm').style.display = 'none';
       document.getElementById('submitMessage').innerHTML =
         "<i class='fa-solid fa-circle-check'></i> <b>ያስገቡት ደረሰኝ በትክክል ተልኳል! ትክክለኝነቱን አረጋግጠን በ24 ሰዓት ዉስጥ እንደውላለን</b><br>" +
-        "<span style='display:block;margin-top:5px;color:#27ae60;font-size:1.07em;'><i class='fa-solid fa-lock'></i> መረጃዎ ተቀብለናል።</span>" +
-        "<div style='margin-top:10px;color:#19507d;font-size:1.01em;'><i class='fa-solid fa-star'></i> ምርጫዎ ስላረጉን እናመሰግናለን!<br> <span style='color:#19507d'><b>ለመመዝገብ ሂደት የትክክለኛ የሚያስፈልገው ክፍያ  <span style='color:#1e90ff'>ETB 3,600</span> ብቻ ነው።<br> ክፍያውን ወደ <b>1000404253337 (ንግድ ባንክ) ዶ/ር ኤርምያስ አባተ ጌታቸው</b> ብቻ ያድርጉ።</b></span></div>";
+        "<span style='display:block;margin-top:5px;color:#27ae60;font-size:1.07em;'><i class='fa-solid fa-lock'></i> መረጃዎን ተቀብለናል።</span>" +
+        "<div style='margin-top:10px;color:#19507d;font-size:1.01em;'><i class='fa-solid fa-star'></i> ምርጫዎ ስላረጉን እናመሰግናለን!<br> <span style='color:#19507d'><b>ለመመዝገብ ትክክለኛ የሚያስፈልገው ክፍያ  <span style='color:#1e90ff'>ETB 3,600</span> ብቻ ነው።<br> ክፍያውን ወደ <b>1000404253337 (ንግድ ባንክ) ዶ/ር ኤርምያስ አባተ ጌታቸው</b> ብቻ ያድርጉ።</b></span></div>";
       document.getElementById('submitMessage').classList.add("visible");
     });
   </script>
