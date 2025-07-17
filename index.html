@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8">
+  <title>ሰናይ ዘመን ማረጋገጫ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #eef4fa 0%, #e1ecfa 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #21314d;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    /* --- Polished LOGO HERO --- */
+    .logo-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 36px 10px 24px 10px;
+      background: 
+        linear-gradient(100deg, #f6fbff 0%, #e1ecfa 80%) top left no-repeat,
+        linear-gradient(100deg, #1e90ff1a 50%, #50a7c21a 100%) bottom right no-repeat;
+      position: relative;
+      box-shadow: 0 6px 32px 0 rgba(30, 144, 255, 0.12);
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      overflow: visible;
+    }
+    .logo-glass {
+      position: relative;
+      background: rgba(255,255,255,0.92);
+      border-radius: 30px;
+      box-shadow: 0 8px 32px 0 rgba(44,62,80,0.13), 0 0 0 7px #e4cf941c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 26px 20px 26px;
+      max-width: 360px;
+      width: 100%;
+      margin: 0 auto 12px auto;
+      z-index: 2;
+      border: 0.5px solid #b4954933;
+      backdrop-filter: blur(3.5px);
+      transition: box-shadow .19s;
+    }
+    .logo-glass:hover, .logo-glass:focus-within {
+      box-shadow: 0 14px 56px 0 #1e90ff2a, 0 0 0 9px #b4954933;
+    }
+    .logo-glass .logo-circle {
+      background: linear-gradient(135deg, #fffbe6 0%, #f6d365 80%);
+      border-radius: 50%;
+      width: 116px;
+      height: 116px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 6px 30px #b4954925,
+        0 0 0 7px #1e90ff22;
+      margin-bottom: 18px;
+      border: 3.5px solid #fff;
+      position: relative;
+    }
+    .logo-glass .logo-circle img {
+      max-width: 80px;
+      max-height: 80px;
+      object-fit: contain;
+      border-radius: 50%;
+      box-shadow: 0 4px 18px #b4954942;
+      background: #fff;
+      border: 2.5px solid #f2e9bb;
+      position: relative;
+      z-index: 2;
+    }
+    .logo-glass .logo-circle::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 3px dashed #fbd33477;
+      pointer-events: none;
+      z-index: 1;
+      animation: logo-spin 10s linear infinite;
+    }
+    @keyframes logo-spin {
+      100% { transform: rotate(360deg);}
+    }
+    .logo-glass .title {
+      font-size: 1.5em;
+      font-weight: 900;
+      color: #19507d;
+      letter-spacing: 1.1px;
+      margin: 0 0 5px 0;
+      text-align: center;
+      text-shadow: 0 2px 9px #b4954922;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .logo-glass .title .fa-certificate {
+      color: #fbd334;
+      font-size: 1.15em;
+      margin-right: 4px;
+    }
+    .logo-glass .subtitle {
+      font-size: 1.09em;
+      margin-top: 2px;
+      font-weight: 700;
+      color: #50a7c2;
+      letter-spacing: .4px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-shadow: 0 2px 8px #50a7c242;
+    }
+    .logo-glass .subtitle .fa-shield-halved {
+      color: #fbd334;
+      font-size: 1em;
+      margin-right: 3px;
+    }
+    .flag-container {
+      position: absolute;
+      left: 36px;
+      top: 28px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.86);
+      padding: 4px 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px #19507d0c;
+      border: 1.5px solid #fff;
+    }
+    .flag-container img {
+      width: 53px;
+      height: 36px;
+      border-radius: 7px;
+      border: 1.5px solid #ecdaac;
+      box-shadow: 0 2px 7px #b4954922;
+      background: #fff;
+    }
+    /* --- Rest of your code untouched --- */
+    /* --- Existing CSS (from your original) --- */
+    .official-account-box {
+      background: #ffffff;
+      border: 2.5px solid #19507d;
+      box-shadow: 0 4px 18px rgba(30,144,255,0.08);
+      border-radius: 14px;
+      max-width: 540px;
+      margin: 24px auto 18px auto;
+      padding: 22px 28px 18px 28px;
+      text-align: left;
+      position: relative;
+      font-size: 1.09em;
+    }
+    .official-account-box .fa-bank {
+      color: #1e90ff;
+      font-size: 1.7em;
+      position: absolute;
+      top: 24px;
+      right: 26px;
+      opacity: 0.18;
+    }
+    .official-account-box .official-account-label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.19em;
+      color: #0d427a;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .official-account-box .account-details {
+      margin: 0 0 8px 0;
+      font-size: 1.09em;
+      color: #21314d;
+      font-weight: 700;
+    }
+    .official-account-box .amount {
+      color: #19507d;
+      font-size: 1.12em;
+      font-weight: 900;
+      margin: 12px 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f5fafd;
+      border-radius: 7px;
+      padding: 7px 13px;
+      border: 1.5px solid #b7d6ee;
+      box-shadow: 0 2px 9px rgba(30, 144, 255, 0.04);
+    }
+    .official-account-box .amount .fa-hand-holding-dollar {
+      color: #218838;
+      font-size: 1.18em;
+      margin-right: 3px;
+    }
+    .official-account-box .amount .fee-amount {
+      color: #1e90ff;
+      font-size: 1.15em;
+      font-weight: bold;
+      margin-right: 3px;
+      letter-spacing: 0.2px;
+    }
+    .official-account-box .amount .fee-label {
+      font-size: 1em;
+      color: #19507d;
+      font-weight: 600;
+      margin-right: 3px;
+    }
+    .official-account-box .amount .fee-note {
+      font-size: 0.93em;
+      color: #3a4c6c;
+      font-weight: 500;
+      margin-left: 5px;
+    }
+    .official-account-box .notice {
+      color: #c0392b;
+      font-size: 1.03em;
+      margin-top: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .official-account-box .fa-triangle-exclamation {
+      color: #e67e22;
+      font-size: 1.08em;
+    }
+
+    /* Responsive Certificate Images */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      padding: 32px 8px 10px 8px;
+      max-width: 1200px;
+      margin: 0 auto 24px auto;
+    }
+    .certificate-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      position: relative;
+    }
+    .certificate-border {
+      width: 100%;
+      aspect-ratio: 4/3;
+      max-width: 440px;
+      min-width: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f9fafb 60%, #e2e6e9 100%);
+      border: 6px solid #c7b27d;
+      border-radius: 16px;
+      box-shadow:
+        0 8px 32px rgba(80, 167, 194, 0.10),
+        0 0 0 8px #f3e7c3 inset,
+        0 0 0 2.5px #b49549 inset;
+      position: relative;
+    }
+    .certificate-border img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      background: #fff;
+    }
+    .certificate-border::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 12px;
+      border: 2.5px dashed #e4cf94;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .certificate-frame .cert-title {
+      font-weight: 700;
+      font-size: 1.05em;
+      color: #b49549;
+      margin-top: 10px;
+      text-align: center;
+      letter-spacing: .5px;
+    }
+
+    /* Responsive agent image wrapper and image */
+    .agents {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 13px;
+    }
+    .agent {
+      text-align: center;
+      cursor: pointer;
+      border: 2.5px solid transparent;
+      border-radius: 16px;
+      padding: 18px 22px 12px 22px;
+      background: linear-gradient(120deg, #f8fafb 80%, #edf2fa 100%);
+      box-shadow: 0 4px 20px rgba(39, 60, 117, 0.10);
+      min-width: 150px;
+      transition:
+        border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+        background 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.16s;
+      position: relative;
+      user-select: none;
+      outline: none;
+    }
+    .agent:focus-visible {
+      border-color: #1e90ff;
+      box-shadow: 0 0 0 3px #50a7c277;
+      background: #eaf6fd;
+    }
+    .agent:hover {
+      border-color: #1e90ff;
+      background: #eaf6fd;
+      box-shadow: 0 6px 26px rgba(30,144,255,0.13);
+      transform: translateY(-2px) scale(1.03);
+      z-index: 2;
+    }
+    .agent.selected {
+      border-color: #1e90ff;
+      background: #ecf6fd;
+      box-shadow: 0 0 0 6px #1e90ff33;
+      z-index: 3;
+      transform: translateY(-4px) scale(1.05);
+    }
+    .agent.selected .agent-img-wrapper {
+      border-color: #1e90ff;
+      box-shadow:
+        0 3px 16px #4dc2ff33,
+        0 0 0 8px #fff inset;
+    }
+    .agent.selected::after {
+      content: "\f058";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: #27ae60;
+      font-size: 2em;
+      position: absolute;
+      top: 0px;
+      right: 10px;
+      z-index: 5;
+      background: #fff;
+      border-radius: 50%;
+      border: 2px solid #eaf6fd;
+      padding: 2px 2px 2px 2px;
+      box-shadow: 0 2px 6px #27ae601c;
+      pointer-events: none;
+      animation: select-pop 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes select-pop {
+      0% { transform: scale(0.7); opacity: 0;}
+      70% { transform: scale(1.23); opacity: 1;}
+      100% { transform: scale(1); }
+    }
+    .agent-img-wrapper {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 7px auto;
+      border-radius: 50%;
+      border: 3.5px solid #b49549;
+      box-shadow:
+        0 2px 8px rgba(80,167,194,0.11),
+        0 0 0 6px #fff inset;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: border-color 0.22s, box-shadow 0.22s;
+      max-width: 100vw;
+      max-height: 100vw;
+    }
+    .agent-img-wrapper::after {
+      content: "\f007";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      color: #e4cf94;
+      font-size: 2.3em;
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      opacity: 0.09;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .agent-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    .agent .fa-user-tie {
+      color: #19507d;
+      font-size: 1.15em;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+    .agent strong {
+      display: block;
+      font-size: 1.07em;
+      margin-top: 4px;
+      font-weight: 700;
+      color: #222;
+      letter-spacing: .2px;
+    }
+    .agent .agent-role {
+      color: #888;
+      font-size: 0.94em;
+      margin-top: 2px;
+    }
+
+    /* Input Label Styling for Attractive/Professional Look */
+    form label {
+      display: block;
+      margin: 18px 0 6px 0;
+      font-size: 1.16em;
+      font-weight: 800;
+      color: #1e90ff;
+      letter-spacing: .2px;
+      text-shadow: 0 1px 5px #b7d6ee4c;
+      background: linear-gradient(90deg, #f5fafd 80%, #e2e6e9 100%);
+      border-radius: 7px;
+      padding: 7px 11px 7px 9px;
+      box-shadow: 0 2px 7px #1e90ff16;
+      border-left: 4px solid #b49549;
+      border-bottom: 1px solid #e4cf94;
+      margin-bottom: 7px;
+    }
+    form .input-icon {
+      display: flex;
+      align-items: center;
+      background: #f8fafc;
+      border-radius: 7px;
+      padding: 4px 10px;
+      box-shadow: 0 1px 5px #d9eafc27;
+      margin-bottom: 10px;
+      border: 1.5px solid #e4cf94;
+    }
+    form .input-icon i {
+      color: #b49549;
+      margin-right: 7px;
+      font-size: 1.09em;
+    }
+    form input[type="text"], form input[type="file"] {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 1.08em;
+      color: #21314d;
+      width: 100%;
+      padding: 7px 0;
+    }
+    form button[type="submit"] {
+      margin-top: 19px;
+      background: linear-gradient(90deg, #1e90ff 60%, #50a7c2 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.14em;
+      padding: 12px 32px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px #1e90ff1c;
+      cursor: pointer;
+      letter-spacing: .24px;
+      transition: background 0.22s, transform 0.14s;
+    }
+    form button[type="submit"]:hover {
+      background: linear-gradient(90deg, #50a7c2 15%, #1e90ff 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    .submit-message {
+      text-align: center;
+      margin: 22px auto 0 auto;
+      font-size: 1.15em;
+      font-weight: 700;
+      color: #19507d;
+      background: #f8fafb;
+      border-radius: 8px;
+      padding: 13px 12px 10px 12px;
+      box-shadow: 0 2px 10px #1e90ff11;
+      display: none;
+      max-width: 450px;
+    }
+
+    /* Responsive adjustments for mobile screens */
+    @media (max-width: 900px) {
+      .cert-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 10px;
+        padding: 12px 2px 4px 2px;
+      }
+      .certificate-border {
+        max-width: 99vw;
+        min-width: 0;
+      }
+      .agent-img-wrapper {
+        width: 70px;
+        height: 70px;
+        max-width: 70vw;
+        max-height: 70vw;
+      }
+    }
+    @media (max-width: 680px) {
+      .logo-hero {
+        padding: 19px 2px 13px 2px;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+      }
+      .logo-glass {
+        padding: 14px 6px 9px 6px;
+        max-width: 99vw;
+      }
+      .logo-glass .logo-circle {
+        width: 68px;
+        height: 68px;
+        margin-bottom: 8px;
+      }
+      .logo-glass .logo-circle img {
+        max-width: 48px;
+        max-height: 48px;
+      }
+      .flag-container {
+        left: 6px;
+        top: 7px;
+        gap: 4px;
+        padding: 2px 5px;
+      }
+      .flag-container img {
+        width: 30px;
+        height: 20px;
+        border-radius: 4px;
+      }
+      .cert-grid {
+        gap: 8px;
+        padding: 8px 0;
+      }
+      .certificate-border {
+        max-width: 98vw;
+        aspect-ratio: 4/3;
+      }
+      .agent-img-wrapper {
+        width: 55px;
+        height: 55px;
+        max-width: 55vw;
+        max-height: 55vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- New Logo Hero Section -->
+  <div class="logo-hero">
+    <div class="flag-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" alt="Ethiopian Flag">
+    </div>
+    <div class="logo-glass" tabindex="0">
+      <div class="logo-circle">
+        <img src="IMG_20250717_112613_966.jpg" alt="Logo">
+      </div>
+      <div class="title">
+        <i class="fa-solid fa-certificate"></i>
+        ሰናይ ዘመን የጉዞ እና ቪዛ ኃ/የተ/ግ/ማህበር
+      </div>
+      <div class="subtitle">
+        <i class="fa-solid fa-shield-halved"></i>
+        ከአጭበርባሪወች እራስዎን ይጠብቁ❗️❗️❗️
+      </div>
+    </div>
+  </div>
+
+  <div class="official-account-box">
+    <span class="official-account-label">
+      <i class="fa-solid fa-circle-info"></i> <b>የመመዝገብያ አካውንታችን (Official Registration Account)</b>
+    </span>
+    <div class="account-details">
+      <i class="fa-solid fa-building-columns"></i>
+      <b>1000404253337</b> - <span>Commercial Bank of Ethiopia</span>
+    </div>
+    <div class="account-details">
+      <i class="fa-solid fa-user-graduate"></i>
+      <b>ዶ/ር ኤርምያስ አባተ ጌታቸው</b>
+    </div>
+    <div class="amount">
+      <i class="fa-solid fa-hand-holding-dollar"></i>
+      <span class="fee-label">የመመዝገብያ ክፍያ :</span>
+      <span class="fee-amount">ETB 3,600</span>
+    </div>
+    <div class="notice">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <strong>ይህ የትክክለኛ  አካውንታችን ነው። ማንኛውንም በሌላ አካውንት ለሚደረግ ክፍያ እውቅናው የለንም❗️❗️❗️ ከአጭበርባሪወች እራስዎን ይጠብቁ</strong>
+    </div>
+    <i class="fa-solid fa-bank"></i>
+  </div>
+
+  <div class="cert-grid">
+    <div class="certificate-frame">
+      <div class="certificate-border">
+        <img src="cert1.jpg" alt="Certificate 1">
+      </div>
+      <div class="cert-title"><i class="fa-solid fa-award"></i> Certificate of Recognition</div>
+    </div>
+    <div class="certificate-frame">
+      <div class="certificate-border">
+        <img src="IMG_20250717_112613_516.jpg" alt="Certificate 2">
+      </div>
+      <div class="cert-title"><i class="fa-solid fa-award"></i> Achievement Certificate</div>
+    </div>
+    <div class="certificate-frame">
+      <div class="certificate-border">
+        <img src="IMG_20250717_112613_526.jpg" alt="Certificate 3">
+      </div>
+      <div class="cert-title"><i class="fa-solid fa-award"></i> Service Excellence</div>
+    </div>
+    <div class="certificate-frame">
+      <div class="certificate-border">
+        <img src="IMG_20250717_112613_685.jpg" alt="Certificate 4">
+      </div>
+      <div class="cert-title"><i class="fa-solid fa-award"></i> Certification of Trust</div>
+    </div>
+    <div class="certificate-frame">
+      <div class="certificate-border">
+        <img src="IMG_20250717_112614_084.jpg" alt="Certificate 5">
+      </div>
+      <div class="cert-title"><i class="fa-solid fa-award"></i> International Standard</div>
+    </div>
+    <div class="certificate-frame">
+      <div class="certificate-border">
+        <img src="IMG_20250717_112614_129.jpg" alt="Certificate 6">
+      </div>
+      <div class="cert-title"><i class="fa-solid fa-award"></i> Authorized Member</div>
+    </div>
+    <div class="certificate-frame">
+      <div class="certificate-border">
+        <img src="IMG_20250717_112614_208.jpg" alt="Certificate 7">
+      </div>
+      <div class="cert-title"><i class="fa-solid fa-award"></i> Verified Document</div>
+    </div>
+  </div>
+
+  <form id="receiptForm" autocomplete="off">
+    <label>
+      <i class="fa-solid fa-user-check"></i>
+      <span style="font-weight:bold; font-size:1.19em; color:#19507d; text-shadow:0 2px 7px #b7d6ee4c;">
+        የመዘገበዎትን ወኪል ይምረጡ (Select Your Registration Agent)
+      </span>
+    </label>
+    <div class="agents">
+      <div class="agent" data-name="ዶ/ር መስፍን አሰግድ" tabindex="0" aria-label="ዶ/ር መስፍን አሰግድ">
+        <div class="agent-img-wrapper">
+          <img src="IMG_20250524_183859_241.jpg" alt="Agent Alem">
+        </div>
+        <div>
+          <i class="fa-solid fa-user-tie"></i>
+          <strong>ዶ/ር መስፍን አሰግድ</strong>
+          <div class="agent-role">Senior Consultant</div>
+        </div>
+      </div>
+      <div class="agent" data-name="ዶ/ር ኤርምያስ አባተ" tabindex="0" aria-label="ዶ/ር ኤርምያስ አባተ">
+        <div class="agent-img-wrapper">
+          <img src="IMG_20250716_183434_520.jpg" alt="Agent Bahil">
+        </div>
+        <div>
+          <i class="fa-solid fa-user-tie"></i>
+          <strong>ዶ/ር ኤርምያስ አባተ</strong>
+          <div class="agent-role">Customer Advisor</div>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="selectedAgent" name="agent" required>
+
+    <label for="name">
+      <i class="fa-solid fa-user"></i>
+      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+        ሙሉ ስም ያስገቡ (Enter Your Full Name)
+      </span>
+    </label>
+    <div class="input-icon">
+      <i class="fa fa-user"></i>
+      <input type="text" id="name" name="name" required placeholder="ሙሉ ስም ያስገቡ">
+    </div>
+
+    <label for="phone">
+      <i class="fa-solid fa-phone"></i>
+      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+        የእርስዎ ስልክ ቁጥር (Your Phone Number)
+      </span>
+    </label>
+    <div class="input-icon">
+      <i class="fa fa-phone"></i>
+      <input type="text" id="phone" name="phone" required placeholder="09XXXXXXXX">
+    </div>
+
+    <label for="agentphone">
+      <i class="fa-solid fa-address-book"></i>
+      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+        የወኪሉ ስልክ ቁጥር (Agent's Phone Number)
+      </span>
+    </label>
+    <div class="input-icon">
+      <i class="fa fa-address-book"></i>
+      <input type="text" id="agentphone" name="agentphone" required placeholder="09XXXXXXXX">
+    </div>
+
+    <label for="idcard">
+      <i class="fa-solid fa-id-card"></i>
+      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+        የመታወቂያ ካርድ ፎቶ ያስገቡ (Upload Your ID Card Photo)
+      </span>
+    </label>
+    <div class="input-icon">
+      <i class="fa fa-id-card"></i>
+      <input type="file" id="idcard" name="idcard" accept="image/*" required>
+    </div>
+
+    <label for="payment">
+      <i class="fa-solid fa-money-check-dollar"></i>
+      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+        የክፍያ ደረሰኝ ፎቶ ያስገቡ (Upload Payment Receipt Photo)
+      </span>
+    </label>
+    <div class="input-icon">
+      <i class="fa fa-money-bill"></i>
+      <input type="file" id="payment" name="payment" accept="image/*" required>
+    </div>
+
+    <button type="submit"><i class="fa-solid fa-paper-plane"></i> <b>መመዝገብ ላክ</b></button>
+  </form>
+
+  <div id="submitMessage" class="submit-message" role="status" aria-live="polite"></div>
+
+  <script>
+    // Agent selection
+    const agents = document.querySelectorAll('.agent');
+    const selectedAgentInput = document.getElementById('selectedAgent');
+
+    agents.forEach(agent => {
+      agent.addEventListener('click', () => {
+        agents.forEach(a => a.classList.remove('selected'));
+        agent.classList.add('selected');
+        agent.blur();
+        selectedAgentInput.value = agent.dataset.name;
+      });
+      agent.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          agents.forEach(a => a.classList.remove('selected'));
+          agent.classList.add('selected');
+          selectedAgentInput.value = agent.dataset.name;
+        }
+      });
+    });
+
+    // Form Submission
+    document.getElementById('receiptForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Replace with your real bot credentials
+      const BOT_TOKEN = '7961888919:AAFtbnWJtiSPDR62LOv7_0e-Cu5C8vmV030';
+      const CHAT_ID = '8155585808';
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const agentphone = document.getElementById('agentphone').value.trim();
+      const agent = selectedAgentInput.value;
+      const idcard = document.getElementById('idcard').files[0];
+      const payment = document.getElementById('payment').files[0];
+
+      if (!agent) {
+        document.getElementById('submitMessage').innerHTML = "<i class='fa-solid fa-triangle-exclamation' style='color:#e67e22'></i> <b>እባክዎ የመመዝገብ ወኪል ይምረጡ።</b>";
+        document.getElementById('submitMessage').style.display = "block";
+        return;
+      }
+
+      const text = `📌 አዲስ መመዝገቢያ\n👤 ሙሉ ስም: ${name}\n📱 ስልክ: ${phone}\n👤 ወኪል: ${agent}\n📞 የወኪሉ ስልክ: ${agentphone}`;
+
+      // Send details message
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: CHAT_ID, text })
+      });
+
+      // Send ID card photo
+      if (idcard) {
+        const idForm = new FormData();
+        idForm.append('chat_id', CHAT_ID);
+        idForm.append('photo', idcard);
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+          method: 'POST',
+          body: idForm
+        });
+      }
+
+      // Send payment photo
+      if (payment) {
+        const payForm = new FormData();
+        payForm.append('chat_id', CHAT_ID);
+        payForm.append('photo', payment);
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+          method: 'POST',
+          body: payForm
+        });
+      }
+
+      document.getElementById('submitMessage').innerHTML =
+        "<i class='fa-solid fa-circle-check'></i> <b>ያስገቡት ደረሰኝ በትክክል ተልኳል!ትክክለኝነቱን አረጋግጠን በ24 ሰዓት ዉስጥ እንደውላለን</b><br>" +
+        "<span style='display:block;margin-top:5px;color:#27ae60;font-size:1.07em;'><i class='fa-solid fa-lock'></i> መረጃዎ ተቀብለናል።</span>" +
+        "<div style='margin-top:10px;color:#19507d;font-size:1.01em;'><i class='fa-solid fa-star'></i> ምርጫዎ ስላረጉን እናመሰግናለን!<br> <span style='color:#19507d'><b>ለመመዝገብ ሂደት የትክክለኛ የሚያስፈልገው ክፍያ  <span style='color:#1e90ff'>ETB 3,600</span> ብቻ ነው።<br> ክፍያውን ወደ <b>1000404253337 (ንግድ ባንክ) ዶ/ር ኤርምያስ አባተ ጌታቸው</b> ብቻ ያድርጉ።</b></span></div>";
+      document.getElementById('submitMessage').style.display = "block";
+      document.getElementById('receiptForm').reset();
+      agents.forEach(a => a.classList.remove('selected'));
+      selectedAgentInput.value = "";
+    });
+  </script>
+</body>
+</html>
