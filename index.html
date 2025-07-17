@@ -3,72 +3,236 @@
 <head>
   <meta charset="UTF-8">
   <title>ሰናይ ዘመን ማረጋገጫ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <style>
-    body {
-      background: linear-gradient(135deg, #eef4fa 0%, #e1ecfa 100%);
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: #21314d;
+    html, body {
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      background: linear-gradient(135deg, #eef4fa 0%, #e1ecfa 100%);
+      width: 100vw;
+      max-width: 100vw;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #21314d;
     }
-    /* --- Polished LOGO HERO --- */
+    body {
+      width: 100vw;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #e1ecfa 30%, #b3dbff 100%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.3s;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 40px #1e90ff22, 0 0 0 8px #b4954922;
+      padding: 30px 15px 20px 15px;
+      width: 95vw;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeInLogin 0.45s cubic-bezier(.42,0,.58,1);
+    }
+    @keyframes fadeInLogin {
+      0% { opacity: 0; transform: scale(0.97);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+    .login-card h2 {
+      margin: 0 0 19px 0;
+      color: #1e90ff;
+      font-weight: bold;
+      font-size: 1.18em;
+      letter-spacing: .7px;
+      text-align: center;
+    }
+    .login-card label {
+      display: block;
+      font-weight: 700;
+      color: #19507d;
+      margin-bottom: 6px;
+      margin-top: 16px;
+      font-size: 1.02em;
+      letter-spacing: .1px;
+    }
+    .login-card .input-icon {
+      display: flex;
+      align-items: center;
+      background: #f8fafc;
+      border-radius: 7px;
+      padding: 4px 10px;
+      box-shadow: 0 1px 5px #d9eafc27;
+      margin-bottom: 10px;
+      border: 1.5px solid #e4cf94;
+      width: 100%;
+    }
+    .login-card .input-icon i {
+      color: #b49549;
+      margin-right: 7px;
+      font-size: 1.09em;
+    }
+    .login-card input[type="text"], .login-card input[type="password"] {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 1.08em;
+      color: #21314d;
+      width: 100%;
+      padding: 7px 0;
+    }
+    .login-card button[type="submit"] {
+      margin-top: 17px;
+      background: linear-gradient(90deg, #1e90ff 60%, #50a7c2 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.13em;
+      padding: 11px 0;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px #1e90ff1c;
+      cursor: pointer;
+      letter-spacing: .18px;
+      width: 100%;
+      transition: background 0.22s, transform 0.14s;
+    }
+    .login-card button[type="submit"]:hover {
+      background: linear-gradient(90deg, #50a7c2 15%, #1e90ff 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+    .login-card .login-error {
+      color: #c0392b;
+      margin: 10px 0 0 0;
+      font-size: 1.05em;
+      text-align: center;
+      display: none;
+    }
+    @media (max-width: 680px) {
+      .login-card {
+        padding: 18px 4vw 12px 4vw;
+        max-width: 98vw;
+      }
+      .login-card h2 { font-size: 1.06em;}
+    }
+    .main-content {
+      display: none;
+      width: 100vw;
+      max-width: 100vw;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+    .main-content.active {
+      display: block;
+      animation: fadeInLogin 0.42s cubic-bezier(.42,0,.58,1);
+    }
+
+    /* --- LOGO HERO --- */
     .logo-hero {
+      width: 100vw;
+      max-width: 100vw;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 36px 10px 24px 10px;
-      background: 
-        linear-gradient(100deg, #f6fbff 0%, #e1ecfa 80%) top left no-repeat,
-        linear-gradient(100deg, #1e90ff1a 50%, #50a7c21a 100%) bottom right no-repeat;
+      padding: 6vw 2vw 3vw 2vw;
+      background: linear-gradient(100deg, #f6fbff 0%, #e1ecfa 80%) top left no-repeat,
+                  linear-gradient(100deg, #1e90ff1a 50%, #50a7c21a 100%) bottom right no-repeat;
       position: relative;
       box-shadow: 0 6px 32px 0 rgba(30, 144, 255, 0.12);
-      border-bottom-left-radius: 32px;
-      border-bottom-right-radius: 32px;
+      border-bottom-left-radius: 8vw;
+      border-bottom-right-radius: 8vw;
       overflow: visible;
+    }
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3vw;
+      margin-bottom: 2vw;
+      flex-wrap: wrap;
+    }
+    .logo-bar .logo-img {
+      width: 16vw;
+      max-width: 62px;
+      min-width: 34px;
+      height: 10vw;
+      max-height: 38px;
+      min-height: 22px;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px #e4cf9444, 0 1px 2px #1e90ff22;
+      border: 1.5px solid #b49549cc;
+      background: #fff;
+      display: inline-block;
+      padding: 2px;
+    }
+    .logo-bar .flag-img {
+      width: 12vw;
+      max-width: 46px;
+      min-width: 22px;
+      height: 8vw;
+      max-height: 30px;
+      min-height: 15px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1.5px solid #21883877;
+      background: #fff;
+      box-shadow: 0 1px 6px #1e90ff15;
+      display: inline-block;
     }
     .logo-glass {
       position: relative;
       background: rgba(255,255,255,0.92);
-      border-radius: 30px;
+      border-radius: 7vw;
       box-shadow: 0 8px 32px 0 rgba(44,62,80,0.13), 0 0 0 7px #e4cf941c;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 28px 26px 20px 26px;
-      max-width: 360px;
+      padding: 6vw 3vw 4vw 3vw;
       width: 100%;
-      margin: 0 auto 12px auto;
+      max-width: 360px;
+      margin: 0 auto 2vw auto;
       z-index: 2;
       border: 0.5px solid #b4954933;
       backdrop-filter: blur(3.5px);
       transition: box-shadow .19s;
     }
-    .logo-glass:hover, .logo-glass:focus-within {
-      box-shadow: 0 14px 56px 0 #1e90ff2a, 0 0 0 9px #b4954933;
-    }
     .logo-glass .logo-circle {
       background: linear-gradient(135deg, #fffbe6 0%, #f6d365 80%);
       border-radius: 50%;
-      width: 116px;
-      height: 116px;
+      width: 23vw;
+      max-width: 116px;
+      height: 23vw;
+      max-height: 116px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow:
         0 6px 30px #b4954925,
         0 0 0 7px #1e90ff22;
-      margin-bottom: 18px;
+      margin-bottom: 3vw;
       border: 3.5px solid #fff;
       position: relative;
     }
     .logo-glass .logo-circle img {
       max-width: 80px;
       max-height: 80px;
+      width: 15vw;
+      height: 15vw;
       object-fit: contain;
       border-radius: 50%;
       box-shadow: 0 4px 18px #b4954942;
@@ -77,39 +241,24 @@
       position: relative;
       z-index: 2;
     }
-    .logo-glass .logo-circle::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      border: 3px dashed #fbd33477;
-      pointer-events: none;
-      z-index: 1;
-      animation: logo-spin 10s linear infinite;
-    }
-    @keyframes logo-spin {
-      100% { transform: rotate(360deg);}
-    }
     .logo-glass .title {
-      font-size: 1.5em;
+      font-size: 5vw;
+      min-font-size: 1.1em;
       font-weight: 900;
       color: #19507d;
       letter-spacing: 1.1px;
-      margin: 0 0 5px 0;
+      margin: 0 0 1vw 0;
       text-align: center;
       text-shadow: 0 2px 9px #b4954922;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-    }
-    .logo-glass .title .fa-certificate {
-      color: #fbd334;
-      font-size: 1.15em;
-      margin-right: 4px;
+      gap: 1vw;
+      line-height: 1.25;
     }
     .logo-glass .subtitle {
-      font-size: 1.09em;
+      font-size: 3.8vw;
+      min-font-size: 1em;
       margin-top: 2px;
       font-weight: 700;
       color: #50a7c2;
@@ -117,49 +266,138 @@
       text-align: center;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 1vw;
       text-shadow: 0 2px 8px #50a7c242;
+      line-height: 1.22;
     }
-    .logo-glass .subtitle .fa-shield-halved {
-      color: #fbd334;
-      font-size: 1em;
-      margin-right: 3px;
-    }
-    .flag-container {
-      position: absolute;
-      left: 36px;
-      top: 28px;
-      z-index: 4;
+    .trust-badges {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.86);
-      padding: 4px 10px;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px #19507d0c;
-      border: 1.5px solid #fff;
+      justify-content: center;
+      gap: 1vw;
+      margin-top: 2vw;
+      flex-wrap: wrap;
     }
-    .flag-container img {
-      width: 53px;
-      height: 36px;
-      border-radius: 7px;
-      border: 1.5px solid #ecdaac;
-      box-shadow: 0 2px 7px #b4954922;
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      background: linear-gradient(90deg, #fffbe6 70%, #f6d365 100%);
+      border-radius: 6px;
+      padding: 2px 12px 2px 7px;
+      font-size: 1.01em;
+      font-weight: 700;
+      color: #b49549;
+      box-shadow: 0 1px 8px #b4954922;
+      border: 1.2px solid #fbd33455;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .trust-badge i {
+      color: #fbd334;
+      font-size: 1.19em;
+      margin-right: 3px;
+    }
+    .trust-badge .flag-img {
+      width: 18px;
+      height: 12px;
+      margin-right: 3px;
+      border-radius: 2px;
+      border: 1px solid #e4cf94;
+      box-shadow: 0 1px 5px #b4954922;
       background: #fff;
+      display: inline-block;
     }
-    /* --- Rest of your code untouched --- */
-    /* --- Existing CSS (from your original) --- */
     .official-account-box {
       background: #ffffff;
       border: 2.5px solid #19507d;
       box-shadow: 0 4px 18px rgba(30,144,255,0.08);
       border-radius: 14px;
-      max-width: 540px;
-      margin: 24px auto 18px auto;
-      padding: 22px 28px 18px 28px;
+      max-width: 98vw;
+      margin: 5vw auto 3vw auto;
+      padding: 5vw 4vw 4vw 4vw;
       text-align: left;
       position: relative;
-      font-size: 1.09em;
+      font-size: 1.12em;
+      word-break: break-word;
+    }
+    .official-account-label {
+      display: flex;
+      align-items: center;
+      font-size: 1.25em;
+      color: #19507d;
+      font-weight: 900;
+      letter-spacing: 0.7px;
+      background: linear-gradient(90deg,#b49549 20%,#fffbe6 100%);
+      border-radius: 8px;
+      padding: 7px 12px 7px 9px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px #b4954922;
+      border-left: 5px solid #b49549;
+      border-bottom: 2px solid #e4cf94;
+      text-shadow: 0 1px 6px #b7d6ee4c;
+      gap: 8px;
+      justify-content: center;
+    }
+    .official-account-box .account-details {
+      margin: 0 0 8px 0;
+      font-size: 1.12em;
+      color: #21314d;
+      font-weight: 700;
+      background: #f5fafd;
+      border-radius: 7px;
+      padding: 7px 13px;
+      border: 1.5px solid #b7d6ee;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 9px rgba(30, 144, 255, 0.04);
+      justify-content: center;
+    }
+    .official-account-box .account-details .account-number {
+      font-family: 'Segoe UI Mono', monospace;
+      letter-spacing: 2px;
+      font-size: 1.23em;
+      color: #1e90ff;
+      background: #fff;
+      border-radius: 6px;
+      padding: 5px 12px;
+      margin: 0 10px;
+      border: 2px solid #b49549;
+      box-shadow: 0 2px 8px #b4954922;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .official-account-box .amount {
+      color: #19507d;
+      font-size: 1.19em;
+      font-weight: 900;
+      margin: 12px 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fffdf5;
+      border-radius: 9px;
+      padding: 8px 17px;
+      border: 2px solid #ffd70099;
+      box-shadow: 0 2px 9px rgba(30, 144, 255, 0.04);
+      justify-content: center;
+    }
+    .official-account-box .notice {
+      color: #c0392b;
+      font-size: 1.08em;
+      margin-top: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #fff7eb;
+      border-radius: 7px;
+      padding: 7px 13px;
+      border: 1.5px solid #fbd33477;
+      box-shadow: 0 2px 6px #fbd33433;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      justify-content: center;
+      text-align: center;
     }
     .official-account-box .fa-bank {
       color: #1e90ff;
@@ -169,80 +407,15 @@
       right: 26px;
       opacity: 0.18;
     }
-    .official-account-box .official-account-label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 1.19em;
-      color: #0d427a;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-    .official-account-box .account-details {
-      margin: 0 0 8px 0;
-      font-size: 1.09em;
-      color: #21314d;
-      font-weight: 700;
-    }
-    .official-account-box .amount {
-      color: #19507d;
-      font-size: 1.12em;
-      font-weight: 900;
-      margin: 12px 0 4px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #f5fafd;
-      border-radius: 7px;
-      padding: 7px 13px;
-      border: 1.5px solid #b7d6ee;
-      box-shadow: 0 2px 9px rgba(30, 144, 255, 0.04);
-    }
-    .official-account-box .amount .fa-hand-holding-dollar {
-      color: #218838;
-      font-size: 1.18em;
-      margin-right: 3px;
-    }
-    .official-account-box .amount .fee-amount {
-      color: #1e90ff;
-      font-size: 1.15em;
-      font-weight: bold;
-      margin-right: 3px;
-      letter-spacing: 0.2px;
-    }
-    .official-account-box .amount .fee-label {
-      font-size: 1em;
-      color: #19507d;
-      font-weight: 600;
-      margin-right: 3px;
-    }
-    .official-account-box .amount .fee-note {
-      font-size: 0.93em;
-      color: #3a4c6c;
-      font-weight: 500;
-      margin-left: 5px;
-    }
-    .official-account-box .notice {
-      color: #c0392b;
-      font-size: 1.03em;
-      margin-top: 10px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-    .official-account-box .fa-triangle-exclamation {
-      color: #e67e22;
-      font-size: 1.08em;
-    }
-
-    /* Responsive Certificate Images */
+    /* --- Certificate Grid --- */
     .cert-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      padding: 32px 8px 10px 8px;
-      max-width: 1200px;
-      margin: 0 auto 24px auto;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 3vw;
+      padding: 6vw 2vw 2vw 2vw;
+      max-width: 99vw;
+      margin: 0 auto 5vw auto;
+      box-sizing: border-box;
     }
     .certificate-frame {
       display: flex;
@@ -253,11 +426,13 @@
       border: none;
       box-shadow: none;
       position: relative;
+      width: 100%;
+      max-width: 100vw;
     }
     .certificate-border {
       width: 100%;
       aspect-ratio: 4/3;
-      max-width: 440px;
+      max-width: 99vw;
       min-width: 0;
       padding: 0;
       display: flex;
@@ -271,6 +446,7 @@
         0 0 0 8px #f3e7c3 inset,
         0 0 0 2.5px #b49549 inset;
       position: relative;
+      box-sizing: border-box;
     }
     .certificate-border img {
       width: 100%;
@@ -280,15 +456,6 @@
       display: block;
       background: #fff;
     }
-    .certificate-border::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 12px;
-      border: 2.5px dashed #e4cf94;
-      pointer-events: none;
-      z-index: 2;
-    }
     .certificate-frame .cert-title {
       font-weight: 700;
       font-size: 1.05em;
@@ -296,24 +463,28 @@
       margin-top: 10px;
       text-align: center;
       letter-spacing: .5px;
+      word-break: break-word;
     }
-
-    /* Responsive agent image wrapper and image */
+    /* --- Agents --- */
     .agents {
       display: flex;
       justify-content: center;
-      gap: 32px;
+      gap: 5vw;
       margin-top: 13px;
+      flex-wrap: wrap;
+      width: 100%;
     }
     .agent {
       text-align: center;
       cursor: pointer;
       border: 2.5px solid transparent;
       border-radius: 16px;
-      padding: 18px 22px 12px 22px;
+      padding: 5vw 7vw 3vw 7vw;
       background: linear-gradient(120deg, #f8fafb 80%, #edf2fa 100%);
       box-shadow: 0 4px 20px rgba(39, 60, 117, 0.10);
-      min-width: 150px;
+      min-width: 110px;
+      max-width: 48vw;
+      margin-bottom: 2vw;
       transition:
         border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1),
         background 0.22s cubic-bezier(0.4, 0, 0.2, 1),
@@ -322,6 +493,7 @@
       position: relative;
       user-select: none;
       outline: none;
+      box-sizing: border-box;
     }
     .agent:focus-visible {
       border-color: #1e90ff;
@@ -372,8 +544,10 @@
       100% { transform: scale(1); }
     }
     .agent-img-wrapper {
-      width: 100px;
-      height: 100px;
+      width: 24vw;
+      height: 24vw;
+      max-width: 100px;
+      max-height: 100px;
       margin: 0 auto 7px auto;
       border-radius: 50%;
       border: 3.5px solid #b49549;
@@ -390,20 +564,6 @@
       max-width: 100vw;
       max-height: 100vw;
     }
-    .agent-img-wrapper::after {
-      content: "\f007";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      color: #e4cf94;
-      font-size: 2.3em;
-      position: absolute;
-      left: 50%;
-      top: 52%;
-      transform: translate(-50%, -50%);
-      opacity: 0.09;
-      pointer-events: none;
-      z-index: 1;
-    }
     .agent-img-wrapper img {
       width: 100%;
       height: 100%;
@@ -412,161 +572,100 @@
       display: block;
       position: relative;
       z-index: 2;
-    }
-    .agent .fa-user-tie {
-      color: #19507d;
-      font-size: 1.15em;
-      margin-right: 3px;
-      vertical-align: middle;
+      border: 2px solid #fbd334;
+      box-shadow: 0 2px 12px #b4954922;
+      background: linear-gradient(135deg, #f6fbff 0%, #fbd334 80%);
     }
     .agent strong {
       display: block;
-      font-size: 1.07em;
+      font-size: 1.13em;
       margin-top: 4px;
-      font-weight: 700;
-      color: #222;
+      font-weight: 900;
+      color: #19507d;
       letter-spacing: .2px;
     }
     .agent .agent-role {
       color: #888;
-      font-size: 0.94em;
+      font-size: 0.97em;
       margin-top: 2px;
+      font-weight: 500;
     }
-
-    /* Input Label Styling for Attractive/Professional Look */
-    form label {
-      display: block;
-      margin: 18px 0 6px 0;
-      font-size: 1.16em;
-      font-weight: 800;
-      color: #1e90ff;
-      letter-spacing: .2px;
-      text-shadow: 0 1px 5px #b7d6ee4c;
-      background: linear-gradient(90deg, #f5fafd 80%, #e2e6e9 100%);
-      border-radius: 7px;
-      padding: 7px 11px 7px 9px;
-      box-shadow: 0 2px 7px #1e90ff16;
-      border-left: 4px solid #b49549;
-      border-bottom: 1px solid #e4cf94;
-      margin-bottom: 7px;
-    }
-    form .input-icon {
+    /* --- Image Preview --- */
+    .image-preview-box {
       display: flex;
       align-items: center;
-      background: #f8fafc;
-      border-radius: 7px;
-      padding: 4px 10px;
-      box-shadow: 0 1px 5px #d9eafc27;
-      margin-bottom: 10px;
-      border: 1.5px solid #e4cf94;
-    }
-    form .input-icon i {
-      color: #b49549;
-      margin-right: 7px;
-      font-size: 1.09em;
-    }
-    form input[type="text"], form input[type="file"] {
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 1.08em;
-      color: #21314d;
+      justify-content: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+      margin-top: 5px;
       width: 100%;
-      padding: 7px 0;
     }
-    form button[type="submit"] {
-      margin-top: 19px;
-      background: linear-gradient(90deg, #1e90ff 60%, #50a7c2 100%);
-      color: #fff;
-      font-weight: 800;
-      font-size: 1.14em;
-      padding: 12px 32px;
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 2px 12px #1e90ff1c;
-      cursor: pointer;
-      letter-spacing: .24px;
-      transition: background 0.22s, transform 0.14s;
-    }
-    form button[type="submit"]:hover {
-      background: linear-gradient(90deg, #50a7c2 15%, #1e90ff 100%);
-      transform: translateY(-2px) scale(1.04);
-    }
-    .submit-message {
-      text-align: center;
-      margin: 22px auto 0 auto;
-      font-size: 1.15em;
-      font-weight: 700;
-      color: #19507d;
-      background: #f8fafb;
-      border-radius: 8px;
-      padding: 13px 12px 10px 12px;
-      box-shadow: 0 2px 10px #1e90ff11;
+    .image-preview {
+      width: 90px;
+      height: 74px;
+      border-radius: 9px;
+      box-shadow: 0 2px 8px #1e90ff22, 0 0 0 3px #b49549cc;
+      border: 1.5px solid #b49549;
+      object-fit: cover;
+      background: #fff;
       display: none;
-      max-width: 450px;
     }
-
+    .image-preview.visible {
+      display: block;
+      animation: fadeInLogin 0.33s cubic-bezier(.42,0,.58,1);
+    }
     /* Responsive adjustments for mobile screens */
-    @media (max-width: 900px) {
-      .cert-grid {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 10px;
-        padding: 12px 2px 4px 2px;
-      }
-      .certificate-border {
-        max-width: 99vw;
-        min-width: 0;
-      }
-      .agent-img-wrapper {
-        width: 70px;
-        height: 70px;
-        max-width: 70vw;
-        max-height: 70vw;
-      }
-    }
     @media (max-width: 680px) {
       .logo-hero {
-        padding: 19px 2px 13px 2px;
-        border-bottom-left-radius: 18px;
-        border-bottom-right-radius: 18px;
+        padding: 4vw 2vw 2vw 2vw;
+        border-bottom-left-radius: 4vw;
+        border-bottom-right-radius: 4vw;
       }
       .logo-glass {
-        padding: 14px 6px 9px 6px;
+        padding: 3vw 2vw 2vw 2vw;
         max-width: 99vw;
       }
       .logo-glass .logo-circle {
-        width: 68px;
-        height: 68px;
-        margin-bottom: 8px;
+        width: 16vw;
+        height: 16vw;
+        margin-bottom: 1.5vw;
+        min-width: 48px;
+        min-height: 48px;
       }
       .logo-glass .logo-circle img {
         max-width: 48px;
         max-height: 48px;
-      }
-      .flag-container {
-        left: 6px;
-        top: 7px;
-        gap: 4px;
-        padding: 2px 5px;
-      }
-      .flag-container img {
-        width: 30px;
-        height: 20px;
-        border-radius: 4px;
+        width: 12vw;
+        height: 12vw;
       }
       .cert-grid {
-        gap: 8px;
-        padding: 8px 0;
+        gap: 1.5vw;
+        padding: 2vw 0;
       }
       .certificate-border {
         max-width: 98vw;
         aspect-ratio: 4/3;
       }
       .agent-img-wrapper {
-        width: 55px;
-        height: 55px;
+        width: 15vw;
+        height: 15vw;
         max-width: 55vw;
         max-height: 55vw;
+      }
+      .official-account-box {
+        padding: 3vw 2vw 2vw 2vw;
+        font-size: 0.98em;
+      }
+      .agents {
+        gap: 3vw;
+      }
+      .agent {
+        padding: 3vw 4vw 2vw 4vw;
+        max-width: 88vw;
+      }
+      .image-preview {
+        width: 70px;
+        height: 56px;
       }
     }
     @media (max-width: 600px) {
@@ -574,242 +673,356 @@
         grid-template-columns: 1fr;
       }
     }
+    /* Form and Inputs Mobile Friendly */
+    form {
+      max-width: 99vw;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2vw 2vw 2vw 2vw;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    form .input-icon {
+      font-size: 1em;
+      padding: 2vw 2vw;
+    }
+    form input[type="text"], form input[type="file"] {
+      font-size: 1em;
+      padding: 1vw 0;
+    }
+    form button[type="submit"] {
+      font-size: 1.1em;
+      padding: 3vw 0;
+      width: 100%;
+      margin-bottom: 2vw;
+    }
+    .submit-message {
+      font-size: 1em;
+      padding: 2vw 2vw 2vw 2vw;
+      box-sizing: border-box;
+      width: 96vw;
+      max-width: 99vw;
+      display: none;
+      text-align: center;
+      margin: 0 auto;
+      border-radius: 10px;
+      background: #f5fff7;
+      color: #218838;
+      box-shadow: 0 2px 12px #1e90ff13;
+      border: 2px solid #b49549;
+      margin-top: 15px;
+    }
+    .submit-message.visible {
+      display: block;
+      animation: fadeInLogin 0.38s cubic-bezier(.42,0,.58,1);
+    }
   </style>
 </head>
 <body>
-  <!-- New Logo Hero Section -->
-  <div class="logo-hero">
-    <div class="flag-container">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" alt="Ethiopian Flag">
-    </div>
-    <div class="logo-glass" tabindex="0">
-      <div class="logo-circle">
-        <img src="IMG_20250717_112613_966.jpg" alt="Logo">
+  <!-- Login Overlay (blocks all before login) -->
+  <div class="login-overlay" id="loginOverlay">
+    <form class="login-card" id="loginForm" autocomplete="off">
+      <h2><i class="fa-solid fa-user-lock"></i> የተጠቃሚ መግቢያ (User Login)</h2>
+      <label for="login-username"><i class="fa-solid fa-user"></i> የተጠቃሚ ስም</label>
+      <div class="input-icon">
+        <i class="fa fa-user"></i>
+        <input type="text" id="login-username" name="login-username" required autofocus placeholder="Username">
       </div>
-      <div class="title">
-        <i class="fa-solid fa-certificate"></i>
-        ሰናይ ዘመን የጉዞ እና ቪዛ ኃ/የተ/ግ/ማህበር
+      <label for="login-password"><i class="fa-solid fa-lock"></i> የይለፍ ቃል</label>
+      <div class="input-icon">
+        <i class="fa fa-lock"></i>
+        <input type="password" id="login-password" name="login-password" required placeholder="Password">
       </div>
-      <div class="subtitle">
-        <i class="fa-solid fa-shield-halved"></i>
-        ከአጭበርባሪወች እራስዎን ይጠብቁ❗️❗️❗️
-      </div>
-    </div>
+      <button type="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> ግባ</button>
+      <div class="login-error" id="loginError"></div>
+    </form>
   </div>
-
-  <div class="official-account-box">
-    <span class="official-account-label">
-      <i class="fa-solid fa-circle-info"></i> <b>የመመዝገብያ አካውንታችን (Official Registration Account)</b>
-    </span>
-    <div class="account-details">
-      <i class="fa-solid fa-building-columns"></i>
-      <b>1000404253337</b> - <span>Commercial Bank of Ethiopia</span>
+  <div class="main-content" id="mainContent">
+    <!-- --- LOGO HERO --- -->
+    <div class="logo-hero">
+      <div class="logo-bar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada Flag" class="flag-img" title="Canada">
+        <img src="IMG_20250717_112613_966.jpg" alt="Current Company Logo" class="logo-img" title="Current Company">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" alt="Ethiopia Flag" class="flag-img" title="Ethiopia">
+      </div>
+      <div class="logo-glass" tabindex="0">
+        <div class="logo-circle">
+          <img src="IMG_20250717_112613_966.jpg" alt="Logo">
+        </div>
+        <div class="title">
+          <i class="fa-solid fa-certificate"></i>
+          ሰናይ ዘመን የጉዞ እና ቪዛ ኃ/የተ/ግ/ማህበር
+        </div>
+        <div class="subtitle">
+          <i class="fa-solid fa-shield-halved"></i>
+          ከአጭበርባሪወች እራስዎን ይጠብቁ❗️❗️❗️
+        </div>
+        <div class="trust-badges">
+          <span class="trust-badge"><i class="fa-solid fa-award"></i> TRUSTED</span>
+          <span class="trust-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" class="flag-img" alt="Canada">Canada Partner</span>
+          <span class="trust-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" class="flag-img" alt="Ethiopia">Ethiopia Certified</span>
+        </div>
+      </div>
     </div>
-    <div class="account-details">
-      <i class="fa-solid fa-user-graduate"></i>
-      <b>ዶ/ር ኤርምያስ አባተ ጌታቸው</b>
+    <!-- --- Official Account --- -->
+    <div class="official-account-box">
+      <span class="official-account-label">
+        <i class="fa-solid fa-circle-info"></i> <b>Official Registration Account <span style="font-size:0.85em;color:#b49549;">(የመመዝገብያ አካውንታችን)</span></b>
+      </span>
+      <div class="account-details">
+        <i class="fa-solid fa-building-columns" style="color:#b49549;"></i>
+        <span class="account-number">1000404253337</span>
+        <span style="color:#1e90ff;"><b>Commercial Bank of Ethiopia</b></span>
+      </div>
+      <div class="account-details">
+        <i class="fa-solid fa-user-graduate" style="color:#218838;"></i>
+        <b>ዶ/ር ኤርምያስ አባተ ጌታቸው</b>
+      </div>
+      <div class="amount">
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        <span class="fee-label">የመመዝገብያ ክፍያ :</span>
+        <span class="fee-amount">ETB 3,600</span>
+      </div>
+      <div class="notice">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>
+          ይህ ያለን ብቸኛ የ ONLINE መመዝገብያ ድህረገፅ ነው <br>
+          <b>ለማንኛውም በሌላ አካውንት ለሚደረግ ክፍያ እውቅናው የለንም❗️ ከአጭበርባሪወች እራስዎን ይጠብቁ።</b>
+        </span>
+      </div>
+      <i class="fa-solid fa-bank"></i>
     </div>
-    <div class="amount">
-      <i class="fa-solid fa-hand-holding-dollar"></i>
-      <span class="fee-label">የመመዝገብያ ክፍያ :</span>
-      <span class="fee-amount">ETB 3,600</span>
+    <!-- --- Certificates --- -->
+    <div class="cert-grid">
+      <div class="certificate-frame">
+        <div class="certificate-border">
+          <img src="cert1.jpg" alt="Certificate 1">
+        </div>
+        <div class="cert-title"><i class="fa-solid fa-award"></i> Certificate of Recognition</div>
+      </div>
+      <div class="certificate-frame">
+        <div class="certificate-border">
+          <img src="IMG_20250717_112613_516.jpg" alt="Certificate 2">
+        </div>
+        <div class="cert-title"><i class="fa-solid fa-award"></i> Achievement Certificate</div>
+      </div>
+      <div class="certificate-frame">
+        <div class="certificate-border">
+          <img src="IMG_20250717_112613_526.jpg" alt="Certificate 3">
+        </div>
+        <div class="cert-title"><i class="fa-solid fa-award"></i> Service Excellence</div>
+      </div>
+      <div class="certificate-frame">
+        <div class="certificate-border">
+          <img src="IMG_20250717_112613_685.jpg" alt="Certificate 4">
+        </div>
+        <div class="cert-title"><i class="fa-solid fa-award"></i> Certification of Trust</div>
+      </div>
+      <div class="certificate-frame">
+        <div class="certificate-border">
+          <img src="IMG_20250717_112614_084.jpg" alt="Certificate 5">
+        </div>
+        <div class="cert-title"><i class="fa-solid fa-award"></i> International Standard</div>
+      </div>
+      <div class="certificate-frame">
+        <div class="certificate-border">
+          <img src="IMG_20250717_112614_129.jpg" alt="Certificate 6">
+        </div>
+        <div class="cert-title"><i class="fa-solid fa-award"></i> Authorized Member</div>
+      </div>
+      <div class="certificate-frame">
+        <div class="certificate-border">
+          <img src="IMG_20250717_112614_208.jpg" alt="Certificate 7">
+        </div>
+        <div class="cert-title"><i class="fa-solid fa-award"></i> Verified Document</div>
+      </div>
     </div>
-    <div class="notice">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-      <strong>ይህ የትክክለኛ  አካውንታችን ነው። ማንኛውንም በሌላ አካውንት ለሚደረግ ክፍያ እውቅናው የለንም❗️❗️❗️ ከአጭበርባሪወች እራስዎን ይጠብቁ</strong>
-    </div>
-    <i class="fa-solid fa-bank"></i>
+    <!-- --- Registration Form --- -->
+    <form id="receiptForm" autocomplete="off">
+      <label>
+        <i class="fa-solid fa-user-check"></i>
+        <span style="font-weight:bold; font-size:1.19em; color:#19507d; text-shadow:0 2px 7px #b7d6ee4c;">
+          የመዘገበዎትን ወኪል ይምረጡ (Select Your Registration Agent)
+        </span>
+      </label>
+      <div class="agents">
+        <div class="agent" tabindex="0" aria-label="ዶ/ር መስፍን አሰግድ" data-name="ዶ/ር መስፍን አሰግድ">
+          <div class="agent-img-wrapper">
+            <img src="IMG_20250524_183859_241.jpg" alt="Agent Mesfin" title="አርእስት ዶ/ር መስፍን አሰግድ">
+          </div>
+          <div>
+            <i class="fa-solid fa-user-tie"></i>
+            <strong>ዶ/ር መስፍን አሰግድ</strong>
+            <div class="agent-role">Senior Consultant</div>
+          </div>
+        </div>
+        <div class="agent" tabindex="0" aria-label="ዶ/ር ኤርምያስ አባተ" data-name="ዶ/ር ኤርምያስ አባተ">
+          <div class="agent-img-wrapper">
+            <img src="IMG_20250716_183434_520.jpg" alt="Agent Ermias" title="አርእስት ዶ/ር ኤርምያስ አባተ">
+          </div>
+          <div>
+            <i class="fa-solid fa-user-tie"></i>
+            <strong>ዶ/ር ኤርምያስ አባተ</strong>
+            <div class="agent-role">Senior Consultant</div>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" id="selectedAgent" name="agent" required>
+      <label for="name">
+        <i class="fa-solid fa-user"></i>
+        <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+          ሙሉ ስም ያስገቡ (Enter Your Full Name)
+        </span>
+      </label>
+      <div class="input-icon">
+        <i class="fa fa-user"></i>
+        <input type="text" id="name" name="name" required placeholder="ሙሉ ስም ያስገቡ">
+      </div>
+      <label for="phone">
+        <i class="fa-solid fa-phone"></i>
+        <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+          የእርስዎ ስልክ ቁጥር (Your Phone Number)
+        </span>
+      </label>
+      <div class="input-icon">
+        <i class="fa fa-phone"></i>
+        <input type="text" id="phone" name="phone" required placeholder="09XXXXXXXX">
+      </div>
+      <label for="agentphone">
+        <i class="fa-solid fa-address-book"></i>
+        <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+          የወኪሉ ስልክ ቁጥር (Agent's Phone Number)
+        </span>
+      </label>
+      <div class="input-icon">
+        <i class="fa fa-address-book"></i>
+        <input type="text" id="agentphone" name="agentphone" required placeholder="09XXXXXXXX">
+      </div>
+      <label for="idcard">
+        <i class="fa-solid fa-id-card"></i>
+        <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+          የመታወቂያ ካርድ ፎቶ ያስገቡ (Upload Your ID Card Photo)
+        </span>
+      </label>
+      <div class="input-icon">
+        <i class="fa fa-id-card"></i>
+        <input type="file" id="idcard" name="idcard" accept="image/*" required>
+      </div>
+      <div class="image-preview-box">
+        <img id="idPreview" class="image-preview" alt="ID Card Preview">
+      </div>
+      <label for="payment">
+        <i class="fa-solid fa-money-check-dollar"></i>
+        <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
+          የክፍያ ደረሰኝ ፎቶ ያስገቡ (Upload Payment Receipt Photo)
+        </span>
+      </label>
+      <div class="input-icon">
+        <i class="fa fa-money-bill"></i>
+        <input type="file" id="payment" name="payment" accept="image/*" required>
+      </div>
+      <div class="image-preview-box">
+        <img id="paymentPreview" class="image-preview" alt="Payment Preview">
+      </div>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> <b>የመመዝገብያ ክፍያ ከፍዬ ጨርሻለሁ</b></button>
+    </form>
+    <div id="submitMessage" class="submit-message" role="status" aria-live="polite"></div>
   </div>
-
-  <div class="cert-grid">
-    <div class="certificate-frame">
-      <div class="certificate-border">
-        <img src="cert1.jpg" alt="Certificate 1">
-      </div>
-      <div class="cert-title"><i class="fa-solid fa-award"></i> Certificate of Recognition</div>
-    </div>
-    <div class="certificate-frame">
-      <div class="certificate-border">
-        <img src="IMG_20250717_112613_516.jpg" alt="Certificate 2">
-      </div>
-      <div class="cert-title"><i class="fa-solid fa-award"></i> Achievement Certificate</div>
-    </div>
-    <div class="certificate-frame">
-      <div class="certificate-border">
-        <img src="IMG_20250717_112613_526.jpg" alt="Certificate 3">
-      </div>
-      <div class="cert-title"><i class="fa-solid fa-award"></i> Service Excellence</div>
-    </div>
-    <div class="certificate-frame">
-      <div class="certificate-border">
-        <img src="IMG_20250717_112613_685.jpg" alt="Certificate 4">
-      </div>
-      <div class="cert-title"><i class="fa-solid fa-award"></i> Certification of Trust</div>
-    </div>
-    <div class="certificate-frame">
-      <div class="certificate-border">
-        <img src="IMG_20250717_112614_084.jpg" alt="Certificate 5">
-      </div>
-      <div class="cert-title"><i class="fa-solid fa-award"></i> International Standard</div>
-    </div>
-    <div class="certificate-frame">
-      <div class="certificate-border">
-        <img src="IMG_20250717_112614_129.jpg" alt="Certificate 6">
-      </div>
-      <div class="cert-title"><i class="fa-solid fa-award"></i> Authorized Member</div>
-    </div>
-    <div class="certificate-frame">
-      <div class="certificate-border">
-        <img src="IMG_20250717_112614_208.jpg" alt="Certificate 7">
-      </div>
-      <div class="cert-title"><i class="fa-solid fa-award"></i> Verified Document</div>
-    </div>
-  </div>
-
-  <form id="receiptForm" autocomplete="off">
-    <label>
-      <i class="fa-solid fa-user-check"></i>
-      <span style="font-weight:bold; font-size:1.19em; color:#19507d; text-shadow:0 2px 7px #b7d6ee4c;">
-        የመዘገበዎትን ወኪል ይምረጡ (Select Your Registration Agent)
-      </span>
-    </label>
-    <div class="agents">
-      <div class="agent" data-name="ዶ/ር መስፍን አሰግድ" tabindex="0" aria-label="ዶ/ር መስፍን አሰግድ">
-        <div class="agent-img-wrapper">
-          <img src="IMG_20250524_183859_241.jpg" alt="Agent Alem">
-        </div>
-        <div>
-          <i class="fa-solid fa-user-tie"></i>
-          <strong>ዶ/ር መስፍን አሰግድ</strong>
-          <div class="agent-role">Senior Consultant</div>
-        </div>
-      </div>
-      <div class="agent" data-name="ዶ/ር ኤርምያስ አባተ" tabindex="0" aria-label="ዶ/ር ኤርምያስ አባተ">
-        <div class="agent-img-wrapper">
-          <img src="IMG_20250716_183434_520.jpg" alt="Agent Bahil">
-        </div>
-        <div>
-          <i class="fa-solid fa-user-tie"></i>
-          <strong>ዶ/ር ኤርምያስ አባተ</strong>
-          <div class="agent-role">Customer Advisor</div>
-        </div>
-      </div>
-    </div>
-    <input type="hidden" id="selectedAgent" name="agent" required>
-
-    <label for="name">
-      <i class="fa-solid fa-user"></i>
-      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
-        ሙሉ ስም ያስገቡ (Enter Your Full Name)
-      </span>
-    </label>
-    <div class="input-icon">
-      <i class="fa fa-user"></i>
-      <input type="text" id="name" name="name" required placeholder="ሙሉ ስም ያስገቡ">
-    </div>
-
-    <label for="phone">
-      <i class="fa-solid fa-phone"></i>
-      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
-        የእርስዎ ስልክ ቁጥር (Your Phone Number)
-      </span>
-    </label>
-    <div class="input-icon">
-      <i class="fa fa-phone"></i>
-      <input type="text" id="phone" name="phone" required placeholder="09XXXXXXXX">
-    </div>
-
-    <label for="agentphone">
-      <i class="fa-solid fa-address-book"></i>
-      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
-        የወኪሉ ስልክ ቁጥር (Agent's Phone Number)
-      </span>
-    </label>
-    <div class="input-icon">
-      <i class="fa fa-address-book"></i>
-      <input type="text" id="agentphone" name="agentphone" required placeholder="09XXXXXXXX">
-    </div>
-
-    <label for="idcard">
-      <i class="fa-solid fa-id-card"></i>
-      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
-        የመታወቂያ ካርድ ፎቶ ያስገቡ (Upload Your ID Card Photo)
-      </span>
-    </label>
-    <div class="input-icon">
-      <i class="fa fa-id-card"></i>
-      <input type="file" id="idcard" name="idcard" accept="image/*" required>
-    </div>
-
-    <label for="payment">
-      <i class="fa-solid fa-money-check-dollar"></i>
-      <span style="font-weight:bold; font-size:1.13em; color:#b49549;">
-        የክፍያ ደረሰኝ ፎቶ ያስገቡ (Upload Payment Receipt Photo)
-      </span>
-    </label>
-    <div class="input-icon">
-      <i class="fa fa-money-bill"></i>
-      <input type="file" id="payment" name="payment" accept="image/*" required>
-    </div>
-
-    <button type="submit"><i class="fa-solid fa-paper-plane"></i> <b>መመዝገብ ላክ</b></button>
-  </form>
-
-  <div id="submitMessage" class="submit-message" role="status" aria-live="polite"></div>
-
   <script>
-    // Agent selection
-    const agents = document.querySelectorAll('.agent');
-    const selectedAgentInput = document.getElementById('selectedAgent');
+    // LOGIN LOGIC
+    const loginOverlay = document.getElementById('loginOverlay');
+    const mainContent = document.getElementById('mainContent');
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const USERNAME = "senay";
+    const PASSWORD = "zemen";
 
-    agents.forEach(agent => {
-      agent.addEventListener('click', () => {
-        agents.forEach(a => a.classList.remove('selected'));
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('login-username').value.trim();
+      const pass = document.getElementById('login-password').value;
+      if (user === USERNAME && pass === PASSWORD) {
+        loginOverlay.style.display = 'none';
+        mainContent.classList.add('active');
+        loginError.style.display = 'none';
+        window.scrollTo(0, 0);
+        document.body.style.overflowX = 'hidden';
+      } else {
+        loginError.textContent = 'የተሳሳተ የተጠቃሚ ስም ወይም የይለፍ ቃል!';
+        loginError.style.display = 'block';
+      }
+    });
+    document.getElementById('login-password').addEventListener('keyup', function(e){
+      if (e.key === "Enter") {
+        loginForm.dispatchEvent(new Event('submit', {cancelable:true, bubbles:true}));
+      }
+    });
+
+    // Agent selection logic (fixed) ---
+    document.querySelectorAll('.agent').forEach(function(agent) {
+      agent.addEventListener('click', function () {
+        document.querySelectorAll('.agent').forEach(function(a) {
+          a.classList.remove('selected');
+        });
         agent.classList.add('selected');
-        agent.blur();
-        selectedAgentInput.value = agent.dataset.name;
+        document.getElementById('selectedAgent').value = agent.getAttribute('data-name');
       });
-      agent.addEventListener('keydown', (e) => {
+      agent.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          agents.forEach(a => a.classList.remove('selected'));
+          document.querySelectorAll('.agent').forEach(function(a) {
+            a.classList.remove('selected');
+          });
           agent.classList.add('selected');
-          selectedAgentInput.value = agent.dataset.name;
+          document.getElementById('selectedAgent').value = agent.getAttribute('data-name');
         }
       });
     });
 
-    // Form Submission
+    // Image preview for ID card and payment
+    function previewImage(inputId, previewId) {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+      input.addEventListener('change', function() {
+        const file = input.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.classList.add('visible');
+          };
+          reader.readAsDataURL(file);
+        } else {
+          preview.src = "";
+          preview.classList.remove('visible');
+        }
+      });
+    }
+    previewImage('idcard', 'idPreview');
+    previewImage('payment', 'paymentPreview');
+
+    // --- Form Submission (unchanged, only show the message after submit) ---
     document.getElementById('receiptForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
-      // Replace with your real bot credentials
       const BOT_TOKEN = '7961888919:AAFtbnWJtiSPDR62LOv7_0e-Cu5C8vmV030';
       const CHAT_ID = '8155585808';
-
       const name = document.getElementById('name').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const agentphone = document.getElementById('agentphone').value.trim();
-      const agent = selectedAgentInput.value;
+      const agent = document.getElementById('selectedAgent').value;
       const idcard = document.getElementById('idcard').files[0];
       const payment = document.getElementById('payment').files[0];
-
       if (!agent) {
-        document.getElementById('submitMessage').innerHTML = "<i class='fa-solid fa-triangle-exclamation' style='color:#e67e22'></i> <b>እባክዎ የመመዝገብ ወኪል ይምረጡ።</b>";
-        document.getElementById('submitMessage').style.display = "block";
+        document.getElementById('submitMessage').innerHTML = "<i class='fa-solid fa-triangle-exclamation' style='color:#e67e22'></i> <b>እባክዎ የመዘገብዎትን ወኪል ይምረጡ።</b>";
+        document.getElementById('submitMessage').classList.add("visible");
         return;
       }
-
       const text = `📌 አዲስ መመዝገቢያ\n👤 ሙሉ ስም: ${name}\n📱 ስልክ: ${phone}\n👤 ወኪል: ${agent}\n📞 የወኪሉ ስልክ: ${agentphone}`;
-
-      // Send details message
       fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: CHAT_ID, text })
       });
-
-      // Send ID card photo
       if (idcard) {
         const idForm = new FormData();
         idForm.append('chat_id', CHAT_ID);
@@ -819,8 +1032,6 @@
           body: idForm
         });
       }
-
-      // Send payment photo
       if (payment) {
         const payForm = new FormData();
         payForm.append('chat_id', CHAT_ID);
@@ -830,15 +1041,13 @@
           body: payForm
         });
       }
-
+      // Hide the form and show only the submit message
+      document.getElementById('receiptForm').style.display = 'none';
       document.getElementById('submitMessage').innerHTML =
-        "<i class='fa-solid fa-circle-check'></i> <b>ያስገቡት ደረሰኝ በትክክል ተልኳል!ትክክለኝነቱን አረጋግጠን በ24 ሰዓት ዉስጥ እንደውላለን</b><br>" +
+        "<i class='fa-solid fa-circle-check'></i> <b>ያስገቡት ደረሰኝ በትክክል ተልኳል! ትክክለኝነቱን አረጋግጠን በ24 ሰዓት ዉስጥ እንደውላለን</b><br>" +
         "<span style='display:block;margin-top:5px;color:#27ae60;font-size:1.07em;'><i class='fa-solid fa-lock'></i> መረጃዎ ተቀብለናል።</span>" +
         "<div style='margin-top:10px;color:#19507d;font-size:1.01em;'><i class='fa-solid fa-star'></i> ምርጫዎ ስላረጉን እናመሰግናለን!<br> <span style='color:#19507d'><b>ለመመዝገብ ሂደት የትክክለኛ የሚያስፈልገው ክፍያ  <span style='color:#1e90ff'>ETB 3,600</span> ብቻ ነው።<br> ክፍያውን ወደ <b>1000404253337 (ንግድ ባንክ) ዶ/ር ኤርምያስ አባተ ጌታቸው</b> ብቻ ያድርጉ።</b></span></div>";
-      document.getElementById('submitMessage').style.display = "block";
-      document.getElementById('receiptForm').reset();
-      agents.forEach(a => a.classList.remove('selected'));
-      selectedAgentInput.value = "";
+      document.getElementById('submitMessage').classList.add("visible");
     });
   </script>
 </body>
